@@ -87,11 +87,11 @@ class IMF:
         return False
 
     def unfollow_everybody(self):
-        a.api.getSelfUsersFollowing()
-        followings = a.api.LastJson['users']
+        self.api.getSelfUsersFollowing()
+        followings = self.api.LastJson['users']
 
         for following in followings:
-            a.api.unfollow(following['pk'])
+            self.api.unfollow(following['pk'])
             writelog(
                 'unfollowed to {}.'.format(following['username'])
             )
@@ -102,9 +102,9 @@ class IMF:
         next_token = ''
 
         while following < count:
-            a.api.getUserFollowers(id, maxid=next_token)
-            users = a.api.LastJson['users']
-            next_token = a.api.LastJson['next_max_id']
+            self.api.getUserFollowers(id, maxid=next_token)
+            users = self.api.LastJson['users']
+            next_token = self.api.LastJson['next_max_id']
 
             for user in users:
                 if self.isRealUser(user['pk']):
@@ -128,7 +128,7 @@ class IMF:
         )
         if len(users) > 0:
             for user in users:
-                a.api.unfollow(user[0])
+                self.api.unfollow(user[0])
                 writelog(
                     'unfollowed to {}.'.format(user[0])
                 )
