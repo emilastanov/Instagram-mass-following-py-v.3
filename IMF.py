@@ -66,8 +66,20 @@ class IMF:
             'teacher',
             'shop',
             'market'
-            'coach'
+            'coach',
+            'купим',
+            'скупка',
+            'платим',
+            'деньги',
             'jokes',
+            'центр',
+            'деятельность',
+            'прикольные',
+            'прикол',
+            'видос',
+            'подписывайся',
+            'делаем',
+            'делаю'
         ]
 
         self.api.getUsernameInfo(id)
@@ -79,6 +91,9 @@ class IMF:
                 return False
 
         if int(info['media_count']) < 4:
+            return False
+
+        if int(info['followers_count']) > 1000:
             return False
 
         if int(info['following_count']) < 300:
